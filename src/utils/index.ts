@@ -29,3 +29,8 @@
  *     import { myUtil } from '../utils'
  *
  */
+
+export const reverse = (s: string): string => s.split("").reverse().join("")
+export const plus = (acc: number, n: number): number => acc + n
+export const times = (acc: number, n: number): number => acc * n
+export const toInt = (n: string): number => parseInt(n, 10)
