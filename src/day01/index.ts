@@ -28,7 +28,7 @@ const two = (rawInput: string, withWords: boolean = true) => {
     )
     if (withWords) {
         Object.assign(digits, {
-            'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9,
+            one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9,
         })
     }
     const keys = Object.keys(digits)
@@ -49,15 +49,7 @@ function three(rawInput: string, withLetters: boolean): number {
     if (withLetters) {
       map = {
         ...map,
-        one: 1,
-        two: 2,
-        three: 3,
-        four: 4,
-        five: 5,
-        six: 6,
-        seven: 7,
-        eight: 8,
-        nine: 9,
+        one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9,
       }
     }
 
