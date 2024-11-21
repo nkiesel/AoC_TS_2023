@@ -15,33 +15,8 @@ const part1First = (rawInput: string) => {
     return sum
 }
 
-// const part1 = (rawInput: string) => two(rawInput, false)
-// const part2 = (rawInput: string) => two(rawInput, true)
 const part1 = (rawInput: string) => three(rawInput, false)
 const part2 = (rawInput: string) => three(rawInput, true)
-
-const two = (rawInput: string, withWords: boolean = true) => {
-    const input = parseInput(rawInput)
-
-    const digits: { [key: string]: number } = Object.fromEntries(
-        Array.from({ length: 9 }, (_, i) => [String(i + 1), i + 1]),
-    )
-    if (withWords) {
-        Object.assign(digits, {
-            one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9,
-        })
-    }
-    const keys = Object.keys(digits)
-    const valid = (p: { k: string, i: number }) => p.i !== -1
-
-    let sum = 0
-    for (const line of input) {
-        const first = minBy(keys.map((k) => ({ i: line.indexOf(k), k })).filter(valid), 'i')!.k
-        const last = maxBy(keys.map((k) => ({ i: line.lastIndexOf(k), k })).filter(valid), 'i')!.k
-        sum += digits[first] * 10 + digits[last]
-    }
-    return sum
-}
 
 function three(rawInput: string, withLetters: boolean): number {
     let map: { [key: string]: number } = {}
@@ -65,6 +40,7 @@ function three(rawInput: string, withLetters: boolean): number {
 
     return sum(parseInput(rawInput).map((line) => calibration(line)))
 }
+
 run({
     part1: {
         tests: [
@@ -100,3 +76,29 @@ run({
     trimTestInputs: true,
     onlyTests: false,
 })
+
+// const part1 = (rawInput: string) => two(rawInput, false)
+// const part2 = (rawInput: string) => two(rawInput, true)
+
+const two = (rawInput: string, withWords: boolean = true) => {
+    const input = parseInput(rawInput)
+
+    const digits: { [key: string]: number } = Object.fromEntries(
+      Array.from({ length: 9 }, (_, i) => [String(i + 1), i + 1]),
+    )
+    if (withWords) {
+        Object.assign(digits, {
+            one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9,
+        })
+    }
+    const keys = Object.keys(digits)
+    const valid = (p: { k: string, i: number }) => p.i !== -1
+
+    let sum = 0
+    for (const line of input) {
+        const first = minBy(keys.map((k) => ({ i: line.indexOf(k), k })).filter(valid), 'i')!.k
+        const last = maxBy(keys.map((k) => ({ i: line.lastIndexOf(k), k })).filter(valid), 'i')!.k
+        sum += digits[first] * 10 + digits[last]
+    }
+    return sum
+}
